@@ -1,0 +1,23 @@
+| 序号 | 指令     | 控制信号赋值，未列出的控制信号值为 0。           | 输出信号值 PC、BusW、Din、NPCASrc、NPCBSrc                   |
+| ---- | -------- | ------------------------------------------------ | ------------------------------------------------------------ |
+| 1    | fedca2b7 | ExtOp=1，RegWr=1，ALUBSrc=2，ALUctr=f            | PC=00000400、BusW=fedca000、Din=00000000、NPCASrc=0、NPCBSrc=0 |
+| 2    | f9c28293 | RegWr=1，ALUBSrc=2                               | PC=00000404、BusW=fedc9f9c、Din=00000000、NPCASrc=0、NPCBSrc=0 |
+| 3    | 01006013 | RegWr=1，ALUBSrc=2，ALUctr=6                     | PC=00000408、BusW=00000010、Din=00000000、NPCASrc=0、NPCBSrc=0 |
+| 4    | 06502223 | ExtOp=2，MemWr=1，ALUBSrc=2                      | PC=0000040c、BusW=00000064、Din=fedc9f9c、NPCASrc=0、NPCBSrc=0 |
+| 5    | 06400303 | MemOp=5，RegWr=1，ALUBSrc=2，MemtoReg=1          | PC=00000410、BusW=ffffff9c、Din=00000000、NPCASrc=0、NPCBSrc=0 |
+| 6    | 06601423 | ExtOp=2，MemWr=1，MemOp=6，ALUBSrc=2             | PC=00000414、BusW=00000068、Din=ffffff9c、NPCASrc=0、NPCBSrc=0 |
+| 7    | 06405383 | MemOp=2，RegWr=1，ALUBSrc=2，MemtoReg=1          | PC=00000418、BusW=00009f9c、Din=00000000、NPCASrc=0、NPCBSrc=0 |
+| 8    | 06701623 | ExtOp=2，MemWr=1，MemOp=6，ALUBSrc=2             | PC=0000041c、BusW=0000006c、Din=00009f9c、NPCASrc=0、NPCBSrc=0 |
+| 9    | 4042d413 | RegWr=1，ALUBSrc=2，ALUctr=d                     | PC=00000420、BusW=ffedc9f9、Din=00000000、NPCASrc=0、NPCBSrc=0 |
+| 10   | 006444b3 | RegWr=1，ALUctr=4                                | PC=00000424、BusW=00123665、Din=ffffff9c、NPCASrc=0、NPCBSrc=0 |
+| 11   | 00649533 | RegWr=1，ALUctr=1                                | PC=00000428、BusW=50000000、Din=ffffff9c、NPCASrc=0、NPCBSrc=0 |
+| 12   | 008505b3 | RegWr=1                                          | PC=0000042c、BusW=4fedc9f9、Din=ffedc9f9、NPCASrc=0、NPCBSrc=0 |
+| 13   | 00b2a633 | RegWr=1，ALUctr=2                                | PC=00000430、BusW=00000001、Din=4fedc9f9、NPCASrc=0、NPCBSrc=0 |
+| 14   | 00b2b6b3 | RegWr=1，ALUctr=3                                | PC=00000434、BusW=00000000、Din=4fedc9f9、NPCASrc=0、NPCBSrc=0 |
+| 15   | 40b287b3 | RegWr=1，ALUctr=8                                | PC=00000438、BusW=aeeed5a3、Din=4fedc9f9、NPCASrc=0、NPCBSrc=0 |
+| 16   | 06f02823 | ExtOp=2，MemWr=1，ALUBSrc=2                      | PC=0000043c、BusW=00000070、Din=aeeed5a3、NPCASrc=0、NPCBSrc=0 |
+| 17   | 0067c263 | ExtOp=3，ALUctr=2，BandJ=6                       | PC=00000440、BusW=00000001、Din=ffffff9c、NPCASrc=0、NPCBSrc=1 |
+| 18   | 0067d263 | ExtOp=3，ALUctr=2，BandJ=7                       | PC=00000444、BusW=00000001、Din=ffffff9c、NPCASrc=0、NPCBSrc=0 |
+| 19   | 0040086f | ExtOp=4，RegWr=1，ALUABSrc=1，ALUBSrc=1，BandJ=1 | PC=00000448、BusW=0000044c、Din=00000000、NPCASrc=0、NPCBSrc=1 |
+| 20   | 004808e7 | RegWr=1，ALUABSrc=1，ALUBSrc=1，BandJ=2          | PC=0000044c、BusW=00000450、Din=00000000、NPCASrc=1，NPCBSrc=1 |
+| 21   | 00001917 | ExtOp=1，RegWr=1，ALUABSrc=1，ALUBSrc=2          | PC=00000450、BusW=00001450、Din=00000000、NPCASrc=0、NPCBSrc=0 |
