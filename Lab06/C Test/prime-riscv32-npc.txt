@@ -1,0 +1,201 @@
+
+/home/wuhaijun/am-kernels/tests/cpu-tests/build/prime-riscv32-npc.elf:     file format elf32-littleriscv
+
+
+Disassembly of section .text:
+
+00000000 <_start>:
+   0:	00000413          	li	s0,0
+   4:	00009117          	auipc	sp,0x9
+   8:	ffc10113          	addi	sp,sp,-4 # 9000 <_end>
+   c:	0c0000ef          	jal	ra,cc <_trm_init>
+
+00000010 <check>:
+  10:	00050463          	beqz	a0,18 <check+0x8>
+  14:	00008067          	ret
+  18:	ff010113          	addi	sp,sp,-16
+  1c:	00100513          	li	a0,1
+  20:	00112623          	sw	ra,12(sp)
+  24:	0a0000ef          	jal	ra,c4 <halt>
+
+00000028 <main>:
+  28:	fe010113          	addi	sp,sp,-32
+  2c:	01412423          	sw	s4,8(sp)
+  30:	00912a23          	sw	s1,20(sp)
+  34:	01212823          	sw	s2,16(sp)
+  38:	01312623          	sw	s3,12(sp)
+  3c:	00112e23          	sw	ra,28(sp)
+  40:	00812c23          	sw	s0,24(sp)
+  44:	00000913          	li	s2,0
+  48:	06500493          	li	s1,101
+  4c:	19c00a13          	li	s4,412
+  50:	09700993          	li	s3,151
+  54:	00200413          	li	s0,2
+  58:	00040593          	mv	a1,s0
+  5c:	00048513          	mv	a0,s1
+  60:	108000ef          	jal	ra,168 <__modsi3>
+  64:	00140413          	addi	s0,s0,1
+  68:	02050263          	beqz	a0,8c <main+0x64>
+  6c:	fe9416e3          	bne	s0,s1,58 <main+0x30>
+  70:	00291793          	slli	a5,s2,0x2
+  74:	00fa07b3          	add	a5,s4,a5
+  78:	0007a503          	lw	a0,0(a5)
+  7c:	00190913          	addi	s2,s2,1
+  80:	40950533          	sub	a0,a0,s1
+  84:	00153513          	seqz	a0,a0
+  88:	f89ff0ef          	jal	ra,10 <check>
+  8c:	00248493          	addi	s1,s1,2
+  90:	fd3492e3          	bne	s1,s3,54 <main+0x2c>
+  94:	ff690513          	addi	a0,s2,-10
+  98:	00153513          	seqz	a0,a0
+  9c:	f75ff0ef          	jal	ra,10 <check>
+  a0:	01c12083          	lw	ra,28(sp)
+  a4:	01812403          	lw	s0,24(sp)
+  a8:	01412483          	lw	s1,20(sp)
+  ac:	01012903          	lw	s2,16(sp)
+  b0:	00c12983          	lw	s3,12(sp)
+  b4:	00812a03          	lw	s4,8(sp)
+  b8:	00000513          	li	a0,0
+  bc:	02010113          	addi	sp,sp,32
+  c0:	00008067          	ret
+
+000000c4 <halt>:
+  c4:	1ca02223          	sw	a0,452(zero) # 1c4 <exit_status>
+  c8:	0000006f          	j	c8 <halt+0x4>
+
+000000cc <_trm_init>:
+  cc:	ff010113          	addi	sp,sp,-16
+  d0:	19800513          	li	a0,408
+  d4:	00112623          	sw	ra,12(sp)
+  d8:	f51ff0ef          	jal	ra,28 <main>
+  dc:	1ca02223          	sw	a0,452(zero) # 1c4 <exit_status>
+  e0:	0000006f          	j	e0 <_trm_init+0x14>
+
+000000e4 <__divsi3>:
+  e4:	06054063          	bltz	a0,144 <__umodsi3+0x10>
+  e8:	0605c663          	bltz	a1,154 <__umodsi3+0x20>
+
+000000ec <__udivsi3>:
+  ec:	00058613          	mv	a2,a1
+  f0:	00050593          	mv	a1,a0
+  f4:	fff00513          	li	a0,-1
+  f8:	02060c63          	beqz	a2,130 <__udivsi3+0x44>
+  fc:	00100693          	li	a3,1
+ 100:	00b67a63          	bgeu	a2,a1,114 <__udivsi3+0x28>
+ 104:	00c05863          	blez	a2,114 <__udivsi3+0x28>
+ 108:	00161613          	slli	a2,a2,0x1
+ 10c:	00169693          	slli	a3,a3,0x1
+ 110:	feb66ae3          	bltu	a2,a1,104 <__udivsi3+0x18>
+ 114:	00000513          	li	a0,0
+ 118:	00c5e663          	bltu	a1,a2,124 <__udivsi3+0x38>
+ 11c:	40c585b3          	sub	a1,a1,a2
+ 120:	00d56533          	or	a0,a0,a3
+ 124:	0016d693          	srli	a3,a3,0x1
+ 128:	00165613          	srli	a2,a2,0x1
+ 12c:	fe0696e3          	bnez	a3,118 <__udivsi3+0x2c>
+ 130:	00008067          	ret
+
+00000134 <__umodsi3>:
+ 134:	00008293          	mv	t0,ra
+ 138:	fb5ff0ef          	jal	ra,ec <__udivsi3>
+ 13c:	00058513          	mv	a0,a1
+ 140:	00028067          	jr	t0
+ 144:	40a00533          	neg	a0,a0
+ 148:	00b04863          	bgtz	a1,158 <__umodsi3+0x24>
+ 14c:	40b005b3          	neg	a1,a1
+ 150:	f9dff06f          	j	ec <__udivsi3>
+ 154:	40b005b3          	neg	a1,a1
+ 158:	00008293          	mv	t0,ra
+ 15c:	f91ff0ef          	jal	ra,ec <__udivsi3>
+ 160:	40a00533          	neg	a0,a0
+ 164:	00028067          	jr	t0
+
+00000168 <__modsi3>:
+ 168:	00008293          	mv	t0,ra
+ 16c:	0005ca63          	bltz	a1,180 <__modsi3+0x18>
+ 170:	00054c63          	bltz	a0,188 <__modsi3+0x20>
+ 174:	f79ff0ef          	jal	ra,ec <__udivsi3>
+ 178:	00058513          	mv	a0,a1
+ 17c:	00028067          	jr	t0
+ 180:	40b005b3          	neg	a1,a1
+ 184:	fe0558e3          	bgez	a0,174 <__modsi3+0xc>
+ 188:	40a00533          	neg	a0,a0
+ 18c:	f61ff0ef          	jal	ra,ec <__udivsi3>
+ 190:	40b00533          	neg	a0,a1
+ 194:	00028067          	jr	t0
+
+Disassembly of section .srodata.mainargs:
+
+00000198 <mainargs>:
+	...
+
+Disassembly of section .data.ans:
+
+0000019c <ans>:
+ 19c:	0065                	.2byte	0x65
+ 19e:	0000                	.2byte	0x0
+ 1a0:	00000067          	jr	zero # 0 <_start>
+ 1a4:	0000006b          	.4byte	0x6b
+ 1a8:	006d                	.2byte	0x6d
+ 1aa:	0000                	.2byte	0x0
+ 1ac:	0071                	.2byte	0x71
+ 1ae:	0000                	.2byte	0x0
+ 1b0:	007f                	.2byte	0x7f
+ 1b2:	0000                	.2byte	0x0
+ 1b4:	00000083          	lb	ra,0(zero) # 0 <_start>
+ 1b8:	0089                	.2byte	0x89
+ 1ba:	0000                	.2byte	0x0
+ 1bc:	0000008b          	.4byte	0x8b
+ 1c0:	0095                	.2byte	0x95
+	...
+
+Disassembly of section .sdata.exit_status:
+
+000001c4 <exit_status>:
+ 1c4:	deadbeef          	jal	t4,fffdb7ae <_end+0xfffd27ae>
+
+Disassembly of section .comment:
+
+00000000 <.comment>:
+   0:	3a434347          	fmsub.d	ft6,ft6,ft4,ft7,rmm
+   4:	2820                	.2byte	0x2820
+   6:	6255                	.2byte	0x6255
+   8:	6e75                	.2byte	0x6e75
+   a:	7574                	.2byte	0x7574
+   c:	3120                	.2byte	0x3120
+   e:	2e31                	.2byte	0x2e31
+  10:	2e34                	.2byte	0x2e34
+  12:	2d30                	.2byte	0x2d30
+  14:	7531                	.2byte	0x7531
+  16:	7562                	.2byte	0x7562
+  18:	746e                	.2byte	0x746e
+  1a:	3175                	.2byte	0x3175
+  1c:	327e                	.2byte	0x327e
+  1e:	2e32                	.2byte	0x2e32
+  20:	3430                	.2byte	0x3430
+  22:	2029                	.2byte	0x2029
+  24:	3131                	.2byte	0x3131
+  26:	342e                	.2byte	0x342e
+  28:	302e                	.2byte	0x302e
+	...
+
+Disassembly of section .riscv.attributes:
+
+00000000 <.riscv.attributes>:
+   0:	2d41                	.2byte	0x2d41
+   2:	0000                	.2byte	0x0
+   4:	7200                	.2byte	0x7200
+   6:	7369                	.2byte	0x7369
+   8:	01007663          	bgeu	zero,a6,14 <check+0x4>
+   c:	00000023          	sb	zero,0(zero) # 0 <_start>
+  10:	7205                	.2byte	0x7205
+  12:	3376                	.2byte	0x3376
+  14:	6932                	.2byte	0x6932
+  16:	7032                	.2byte	0x7032
+  18:	5f30                	.2byte	0x5f30
+  1a:	326d                	.2byte	0x326d
+  1c:	3070                	.2byte	0x3070
+  1e:	615f 7032 5f30      	.byte	0x5f, 0x61, 0x32, 0x70, 0x30, 0x5f
+  24:	3266                	.2byte	0x3266
+  26:	3070                	.2byte	0x3070
+  28:	645f 7032 0030      	.byte	0x5f, 0x64, 0x32, 0x70, 0x30, 0x00
